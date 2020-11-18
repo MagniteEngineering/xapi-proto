@@ -1,0 +1,340 @@
+//
+// File for XAPI AdEngine endpoint integration extensions
+//
+
+// XAPI integration fields
+// Use extension IDs in 5010-5020 range for XAPI
+
+syntax = "proto2";
+
+import "v2/openrtb.proto";
+option java_outer_classname = "OpenRtbXapi";
+package com.magnite.openrtb.xapi;
+
+message KeyValuePair {
+    optional string key = 1;
+    optional string value = 2;
+}
+
+message Window {
+    optional string url = 1;
+    optional int32  depth = 2;
+    optional uint32 w = 3;
+    optional uint32 h = 4;
+}
+
+// BidRequest
+message BidRequestExt {
+    message Rp {
+        optional int32 zone_id = 1;
+        repeated int32 badvid = 2;
+        repeated int32 baindid = 3;
+        optional Transparency transparency = 4;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest {
+        optional BidRequestExt ext = 5010;
+    }
+}
+
+// Imp
+message ImpExt {
+    message ProxyBid {
+        optional string id = 1;
+        optional double price = 2;
+    }
+
+    message ProxyDemand {
+        optional double marketrate = 1;
+        repeated ProxyBid bids = 2;
+    }
+
+    message Floor {
+        optional string id = 1;
+        optional double price = 2;
+        optional bool dpf = 3;
+        optional int32 pmptier = 4;
+        optional int32 pmppriority = 5;
+    }
+
+    message Rp {
+        optional int32 zone_id = 1;
+        optional string enc = 2;
+        optional string slot = 3;
+        repeated KeyValuePair target = 4;
+        repeated KeyValuePair track = 5;
+        repeated KeyValuePair rtb = 6;
+        repeated KeyValuePair nolog = 7;
+        optional ProxyDemand proxydemand = 8;
+        repeated Floor floors = 9;
+    }
+
+    optional Rp rp = 1;
+    optional Window window = 2;
+    repeated string viewabilityvendors = 3;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
+        optional ImpExt ext = 5010;
+    }
+};
+
+// Video
+message VideoExt {
+    message Rp {
+        optional uint32 size_id = 1;
+    }
+
+    message Ad {
+        optional int32 w = 1;
+        optional int32 h = 2;
+    }
+
+    optional string orientation = 1;
+    optional Rp rp = 2;
+    optional Ad ad = 3;
+    optional bool skip = 4;
+    optional int32 skipdelay = 5;
+    optional int32 placement = 6; // ortb enum VideoPlacementType
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
+        optional VideoExt ext = 5010;
+    }
+};
+
+// Banner
+message BannerExt {
+    message Rp {
+        optional uint32 size_id = 1;
+        repeated uint32 alt_size_ids = 2;
+        optional string mime = 3;
+        optional bool usenurl = 4;
+        optional bool useimptrackers = 5;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Banner {
+        optional BannerExt ext = 5010;
+    }
+};
+
+message Transparency {
+    optional int32 blind = 1;
+    repeated int32 buyers = 2;
+    repeated int32 blindbuyers = 3;
+}
+
+message AdQuality {
+    repeated string tags = 1;
+    optional string sensitivity = 2;
+}
+
+// App
+message AppExt {
+    message Rp {
+        optional uint32 site_id = 1;
+        optional Transparency transparency = 2;
+        optional AdQuality aq = 3;
+        repeated string blocklists = 4;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.App {
+        optional AppExt ext = 5010;
+    }
+};
+
+// Site
+message SiteExt {
+    message Rp {
+        optional uint32 site_id = 1;
+        optional Transparency transparency = 2;
+        optional AdQuality aq = 3;
+        repeated string blocklists = 4;
+    }
+
+    optional Rp rp = 1;
+    optional Window window = 2;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Site {
+        optional SiteExt ext = 5010;
+    }
+};
+
+// Publisher
+message PublisherExt {
+    message Rp {
+        optional int32 account_id = 1;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Publisher {
+        optional PublisherExt ext = 5010;
+    }
+};
+
+// Device
+message DeviceExt {
+    message Rp {
+        optional string res = 1;
+        optional double pixelratio = 2;
+        optional string xff = 3;
+    }
+
+    message Dooh {
+        optional double impmultiply = 1;
+    }
+
+    optional Rp rp = 1;
+    optional bool ipmask = 2;
+    optional Dooh dooh = 3;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Device {
+        optional DeviceExt ext = 5010;
+    }
+};
+
+// Geo
+message GeoExt {
+    message Rp {
+        optional int32 consent = 1;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Geo {
+        optional GeoExt ext = 5010;
+    }
+};
+
+// User
+message UserExt {
+    message Dt {
+        optional string id = 1;
+        optional uint64 pref = 2;
+        optional uint32 keyv = 3;
+    }
+
+    message Rp {
+        repeated KeyValuePair target = 1;
+    }
+
+    optional Dt dt = 1;
+    optional string us_privacy = 2;
+    optional Rp rp = 3;
+    optional string liveramp_idl = 4;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.User {
+        optional UserExt ext = 5010;
+    }
+};
+
+// Regs
+message RegsExt {
+    optional bool s22580 = 1;
+    optional string us_privacy = 2;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Regs {
+        optional RegsExt ext = 5010;
+    }
+};
+
+// Source
+message SourceExt {
+    optional bool ssreq = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Source {
+        optional SourceExt ext = 5010;
+    }
+};
+
+// Native
+message NativeExt {
+    message Rp {
+        optional uint32 size_id = 1;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Native {
+        optional NativeExt ext = 5010;
+    }
+};
+
+// NativeRequest
+message NativeRequestExt {
+    optional bool privacy = 1;
+
+    extend com.iabtechlab.openrtb.v2.NativeRequest {
+        optional NativeRequestExt ext = 5010;
+    }
+};
+
+
+// ===== Response =====
+
+// BidResponseExt
+message BidResponseExt {
+    message InventoryQuality {
+        optional double cpm = 1;
+        optional double score = 2;
+    }
+
+    message Rp {
+        optional int32 statuscode = 1;
+        optional string statusmsg = 2;
+        optional int32 time = 3;
+        optional InventoryQuality iq = 4;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidResponse {
+        optional BidResponseExt ext = 5011;
+    }
+};
+
+// SeatBidExt
+message SeatBidExt {
+    message Rp {
+        optional string buyer = 1;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid {
+        optional SeatBidExt ext = 5011;
+    }
+}
+
+// BidExt
+message BidExt {
+    message Rp {
+        optional int32 advid = 1;
+        optional string mime = 2;
+        optional string adtype = 3;
+        optional uint32 size_id = 4;
+        repeated KeyValuePair targeting = 5;
+        optional uint32 creativeapi = 6;
+        repeated string viewabilityvendors = 7;
+        optional int32 estimated = 8;
+        optional double adjustbid = 9;
+        optional string pmptier = 10;
+        optional string aqid = 11;
+        repeated int32 aindid = 12;
+        optional string burl = 13;
+        repeated string imptrackers = 14;
+        optional BidResponseExt.InventoryQuality iq = 15;
+    }
+
+    optional Rp rp = 1;
+
+    extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid.Bid {
+        optional BidExt ext = 5011;
+    }
+}
+
