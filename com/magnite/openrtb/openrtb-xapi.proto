@@ -224,7 +224,6 @@ message UserExt {
     }
 
     optional Dt dt = 1;
-    optional string us_privacy = 2;
     optional Rp rp = 3;
     optional string liveramp_idl = 4;
 }
@@ -236,7 +235,6 @@ extend com.iabtechlab.openrtb.v2.BidRequest.User {
 // Regs
 message RegsExt {
     optional bool s22580 = 1;
-    optional string us_privacy = 2;
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Regs {
