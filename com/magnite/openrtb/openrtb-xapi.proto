@@ -9,7 +9,7 @@ syntax = "proto2";
 
 import "v2/openrtb.proto";
 option java_outer_classname = "OpenRtbXapi";
-package com.magnite.openrtb.xapi;
+package com.magnite.openrtb.v2;
 
 message KeyValuePair {
     optional string key = 1;
