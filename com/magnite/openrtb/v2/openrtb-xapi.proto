@@ -36,7 +36,7 @@ message BidRequestExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest {
-    optional BidRequestExt bid_request = 5010;
+    optional BidRequestExt bid_request = 5001;
 }
 
 // Imp
@@ -77,7 +77,7 @@ message ImpExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
-    optional ImpExt imp = 5010;
+    optional ImpExt imp = 5002;
 }
 
 // Video
@@ -100,7 +100,7 @@ message VideoExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
-    optional VideoExt video = 5010;
+    optional VideoExt video = 5003;
 }
 
 // Banner
@@ -117,13 +117,7 @@ message BannerExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Banner {
-    optional BannerExt banner = 5010;
-}
-
-message Transparency {
-    optional int32 blind = 1;
-    repeated int32 buyers = 2;
-    repeated int32 blindbuyers = 3;
+    optional BannerExt banner = 5004;
 }
 
 message AdQuality {
@@ -135,25 +129,23 @@ message AdQuality {
 message AppExt {
     message Rp {
         optional uint32 site_id = 1;
-        optional Transparency transparency = 2;
-        optional AdQuality aq = 3;
-        repeated string blocklists = 4;
+        optional AdQuality aq = 2;
+        repeated string blocklists = 3;
     }
 
     optional Rp rp = 1;
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.App {
-    optional AppExt app = 5010;
+    optional AppExt app = 5005;
 }
 
 // Site
 message SiteExt {
     message Rp {
         optional uint32 site_id = 1;
-        optional Transparency transparency = 2;
-        optional AdQuality aq = 3;
-        repeated string blocklists = 4;
+        optional AdQuality aq = 2;
+        repeated string blocklists = 3;
     }
 
     optional Rp rp = 1;
@@ -161,7 +153,7 @@ message SiteExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Site {
-    optional SiteExt site = 5010;
+    optional SiteExt site = 5006;
 }
 
 // Publisher
@@ -174,7 +166,7 @@ message PublisherExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Publisher {
-    optional PublisherExt publisher = 5010;
+    optional PublisherExt publisher = 5007;
 }
 
 // Device
@@ -195,7 +187,7 @@ message DeviceExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Device {
-    optional DeviceExt device = 5010;
+    optional DeviceExt device = 5008;
 }
 
 // Geo
@@ -208,7 +200,7 @@ message GeoExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Geo {
-    optional GeoExt geo = 5010;
+    optional GeoExt geo = 5009;
 }
 
 // User
@@ -238,7 +230,7 @@ message RegsExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Regs {
-    optional RegsExt regs = 5010;
+    optional RegsExt regs = 5011;
 }
 
 // Source
@@ -247,7 +239,7 @@ message SourceExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Source {
-    optional SourceExt source = 5010;
+    optional SourceExt source = 5012;
 }
 
 // Native
@@ -260,7 +252,7 @@ message NativeExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Native {
-    optional NativeExt native = 5010;
+    optional NativeExt native = 5013;
 }
 
 // NativeRequest
@@ -269,7 +261,7 @@ message NativeRequestExt {
 }
 
 extend com.iabtechlab.openrtb.v2.NativeRequest {
-    optional NativeRequestExt native_request = 5010;
+    optional NativeRequestExt native_request = 5014;
 }
 
 
@@ -277,23 +269,17 @@ extend com.iabtechlab.openrtb.v2.NativeRequest {
 
 // BidResponseExt
 message BidResponseExt {
-    message InventoryQuality {
-        optional double cpm = 1;
-        optional double score = 2;
-    }
-
     message Rp {
         optional int32 statuscode = 1;
         optional string statusmsg = 2;
         optional int32 time = 3;
-        optional InventoryQuality iq = 4;
     }
 
     optional Rp rp = 1;
 }
 
 extend com.iabtechlab.openrtb.v2.BidResponse {
-    optional BidResponseExt bid_response = 5011;
+    optional BidResponseExt bid_response = 5101;
 }
 
 // SeatBidExt
@@ -306,12 +292,17 @@ message SeatBidExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid {
-    optional SeatBidExt seatbid = 5011;
+    optional SeatBidExt seatbid = 5102;
 }
 
 // BidExt
 message BidExt {
     message Rp {
+        message InventoryQuality {
+            optional double cpm = 1;
+            optional double score = 2;
+        }
+
         optional int32 advid = 1;
         optional string mime = 2;
         optional string adtype = 3;
@@ -326,12 +317,12 @@ message BidExt {
         repeated int32 aindid = 12;
         optional string burl = 13;
         repeated string imptrackers = 14;
-        optional BidResponseExt.InventoryQuality iq = 15;
+        optional InventoryQuality iq = 15;
     }
 
     optional Rp rp = 1;
 }
 
 extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid.Bid {
-    optional BidExt bid = 5011;
+    optional BidExt bid = 5103;
 }
