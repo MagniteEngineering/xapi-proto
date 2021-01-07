@@ -93,7 +93,7 @@ message ImpExt {
         // TODO
         optional string slot = 3;
 
-        // TODO: CSV instead of array?
+        // TODO: array not supported currently
         // Inventory-specific targeting. The target object contains an
         // arbitrary set of keys with values comprising of arrays of strings
         // used for Deals (Private Marketplace) targeting, utilized to target
@@ -363,7 +363,7 @@ message UserExt {
     }
 
     message Rp {
-        // TODO: CSV instead of array?
+        // TODO: array not supported currently
         // User-specific targeting. The target object contains an arbitrary set
         // of keys with values comprising of arrays of strings used for Deals
         // (Private Marketplace) targeting, utilized to target first party
@@ -522,7 +522,6 @@ message BidExt {
         // TODO
         optional double adjustbid = 9;
 
-        // TODO: why is this a string?
         // Indicates the private marketplace (PMP) tier of the bid, where 1 and
         // 2 are reserved for future use, 3 = Private marketplace, 4 = First
         // Right marketplace. Omitted for open auction.
