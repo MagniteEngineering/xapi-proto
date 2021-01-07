@@ -5,9 +5,6 @@
 // XAPI integration fields
 // Use extension IDs in 5010-5020 range for XAPI
 
-// TODO: Rubicon Project --> Magnite?
-// TODO: what to do with deprecated fields?
-
 syntax = "proto2";
 
 import "openrtb.proto";
@@ -142,8 +139,8 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
 
 message VideoExt {
     message Rp {
-        // TODO: link supported sizes/formats?
-        // Rubicon Project size ID.
+        // Rubicon Project size ID. Refer to
+        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         optional uint32 size_id = 1;
     }
 
@@ -162,9 +159,11 @@ message VideoExt {
     // TODO
     optional Ad ad = 3;
 
+    // TODO
     // DEPRECATED: Use “skip” field from the video object.
     optional bool skip = 4;
 
+    // TODO
     // DEPRECATED: Replaced by “skipafter” in the video object.
     optional int32 skipdelay = 5;
 
@@ -180,12 +179,12 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
 
 message BannerExt {
     message Rp {
-        // TODO: link supported sizes/formats?
-        // Rubicon Project size ID.
+        // Rubicon Project size ID. Refer to
+        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         optional uint32 size_id = 1;
 
-        // TODO: link supported sizes/formats?
-        // Alternate size IDs.
+        // Alternate size IDs. Refer to
+        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         repeated uint32 alt_size_ids = 2;
 
         // Specify the content type of ad markup (“adm” property) in the
@@ -195,6 +194,7 @@ message BannerExt {
         // fragment.
         optional string mime = 3;
 
+        // TODO
         // DEPRECATED: NO LONGER SUPPORTED
         // Flag to indicate usage of nurl (Rubicon Project billable pixel) in
         // bid response.
@@ -413,8 +413,8 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Source {
 
 message NativeExt {
     message Rp {
-        // TODO: link supported sizes/formats?
-        // Rubicon Project size ID.
+        // Rubicon Project size ID. Refer to
+        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         optional uint32 size_id = 1;
     }
 
@@ -499,8 +499,8 @@ message BidExt {
         // For banner and video, the creative is sent as part of adm.
         optional string adtype = 3;
 
-        // TODO: link supported sizes/formats?
-        // Rubicon Project size ID of winning ad size.
+        // Rubicon Project size ID of winning ad size. Refer to
+        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         optional uint32 size_id = 4;
 
         // Custom key/values used for targeting line items in a publisher ad
