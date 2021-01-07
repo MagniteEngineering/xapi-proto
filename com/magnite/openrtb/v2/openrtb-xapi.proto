@@ -127,8 +127,8 @@ message ImpExt {
     // TODO
     optional Window window = 2;
 
-    // TODO: list/link supported vendors?
-    // Supported viewability vendors.
+    // Supported viewability vendors. For list of supported vendors, visit:
+    // https://resources.rubiconproject.com/resource/publisher-resources/xapi-specifications/#4.9.
     repeated string viewabilityvendors = 3;
 }
 
@@ -238,10 +238,10 @@ message AppExt {
         // TODO
         optional AdQuality aq = 3;
 
-        // TODO: what is "the Rubicon Project Blocklist API"?
         // An array of string identifiers denoting the advertiser blocklist
         // relevant for this impression. See the Rubicon Project Blocklist API
-        // for details.
+        // for details:
+        // https://resources.rubiconproject.com/resource/publisher-resources/knowledge-base/blocklist-sync-api.
         repeated string blocklists = 4;
     }
 
@@ -265,10 +265,10 @@ message SiteExt {
         // TODO
         optional AdQuality aq = 3;
 
-        // TODO: what is "the Rubicon Project Blocklist API"?
         // An array of string identifiers denoting the advertiser blocklist
         // relevant for this impression. See the Rubicon Project Blocklist API
-        // for details.
+        // for details:
+        // https://resources.rubiconproject.com/resource/publisher-resources/knowledge-base/blocklist-sync-api.
         repeated string blocklists = 4;
     }
 
@@ -511,8 +511,8 @@ message BidExt {
         // OpenRTB ApiFramework enum.
         optional uint32 creativeapi = 6;
 
-        // TODO: list/link supported vendors?
-        // Supported viewability vendors.
+        // Supported viewability vendors. For list of supported vendors, visit:
+        // https://resources.rubiconproject.com/resource/publisher-resources/xapi-specifications/#4.9.
         repeated string viewabilityvendors = 7;
 
         // Indicates if the price is estimated (e.g., where pricing is not
