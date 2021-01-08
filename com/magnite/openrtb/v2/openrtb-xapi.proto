@@ -116,7 +116,6 @@ message ImpExt {
         // of sizes to be varied outside of code.
         optional string slot = 3;
 
-        // TODO: array not supported currently
         // Inventory-specific targeting. The target object contains an
         // arbitrary set of keys with values comprising of arrays of strings
         // used for Deals (Private Marketplace) targeting, utilized to target
@@ -400,7 +399,6 @@ message UserExt {
     }
 
     message Rp {
-        // TODO: array not supported currently
         // User-specific targeting. The target object contains an arbitrary set
         // of keys with values comprising of arrays of strings used for Deals
         // (Private Marketplace) targeting, utilized to target first party
