@@ -12,15 +12,24 @@ option java_outer_classname = "OpenRtbXapi";
 package com.magnite.openrtb.v2;
 
 message KeyValuePair {
+    // Generic key.
     optional string key = 1;
+
+    // List of generic values.
     optional string value = 2;
 }
 
 message Window {
-    // TODO
+    // Referrer url of the highest accessible window.
     optional string url = 1;
+
+    // The iframe depth.
     optional int32  depth = 2;
+
+    // Minimum width of any iframe traversed between the video player and window.top.
     optional uint32 w = 3;
+
+    // Minimum height of any iframe traversed between the video player and window.top.
     optional uint32 h = 4;
 }
 
@@ -40,7 +49,7 @@ message BidRequestExt {
         optional Transparency transparency = 4;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
@@ -80,7 +89,9 @@ message ImpExt {
         // RTB rule price floor.
         optional double price = 2;
 
-        // TODO: to be removed
+        // DEPRECATED: NO LONGER SUPPORTED
+        // Flag to indicate whether or not Dynamic Price Floors should be active
+        // for this floor.
         optional bool dpf = 3;
 
         // RTB rule private marketplace (PMP) tier, where 1 and 2 are reserved
@@ -99,7 +110,10 @@ message ImpExt {
         // Set to “url” to URL encode ad.
         optional string enc = 2;
 
-        // TODO
+        // The caller may configure slots in our system, and associate them with
+        // multiple size IDs. Rather than specify the size ID(s) at request time,
+        // another option is to specify the slot name here, thus allowing the set
+        // of sizes to be varied outside of code.
         optional string slot = 3;
 
         // TODO: array not supported currently
@@ -114,10 +128,10 @@ message ImpExt {
         // Inventory-specific tracking/reporting.
         repeated KeyValuePair track = 5;
 
-        // Optional parameters that will be passed to DSPs, and logged by Rubicon Project.
+        // Optional parameters that will be passed to DSPs, and logged by Magnite.
         repeated KeyValuePair rtb = 6;
 
-        // Optional parameters that will passed to DSPs, though not logged within Rubicon Project.
+        // Optional parameters that will passed to DSPs, though not logged within Magnite.
         repeated KeyValuePair nolog = 7;
 
         // The proxy demand object contains a parent object for usage where the
@@ -130,10 +144,11 @@ message ImpExt {
         repeated Floor floors = 9;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 
-    // TODO
+    // For greater transparency around video inventory, some buyers require this
+    // additional data relating to the content and the video player.
     optional Window window = 2;
 
     // Supported viewability vendors. For list of supported vendors, visit:
@@ -148,31 +163,33 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
 
 message VideoExt {
     message Rp {
-        // Rubicon Project size ID. Refer to
+        // DV+ size ID. Refer to
         // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         optional uint32 size_id = 1;
     }
 
     message Ad {
-        // TODO
+        // Width of ad render area.
         optional int32 w = 1;
+
+        // Height of ad render area.
         optional int32 h = 2;
     }
 
-    // TODO
+    // The orientation of the video player, so the buyer can adjust accordingly.
+    // Allowed values are "h" (horizontal) and "v" (vertical).
     optional string orientation = 1;
 
-    // Rubicon Project-specific additions.
+    // Addtions specific to DV+.
     optional Rp rp = 2;
 
-    // TODO
+    // For greater transparency around video inventory, some buyers require this
+    // additional data relating to the video player.
     optional Ad ad = 3;
 
-    // TODO
     // DEPRECATED: Use “skip” field from the video object.
     optional bool skip = 4;
 
-    // TODO
     // DEPRECATED: Replaced by “skipafter” in the video object.
     optional int32 skipdelay = 5;
 
@@ -188,7 +205,7 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
 
 message BannerExt {
     message Rp {
-        // Rubicon Project size ID. Refer to
+        // DV+ size ID. Refer to
         // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         optional uint32 size_id = 1;
 
@@ -203,9 +220,8 @@ message BannerExt {
         // fragment.
         optional string mime = 3;
 
-        // TODO
         // DEPRECATED: NO LONGER SUPPORTED
-        // Flag to indicate usage of nurl (Rubicon Project billable pixel) in
+        // Flag to indicate usage of nurl (Magnite billable pixel) in
         // bid response.
         optional bool usenurl = 4;
 
@@ -214,7 +230,7 @@ message BannerExt {
         optional bool useimptrackers = 5;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
@@ -231,30 +247,32 @@ message Transparency {
 }
 
 message AdQuality {
-    // TODO
-    repeated string tags = 1;
-    optional string sensitivity = 2;
+    // Signal the sensitivity of this slot to ad quality. Allowed values are
+    // "high" (which results in the blocking of creatives that have been
+    // tagged as low-quality), or "low".
+    optional string sensitivity = 1;
 }
 
 message AppExt {
     message Rp {
-        // Rubicon Project site ID.
+        // DV+ site ID.
         optional uint32 site_id = 1;
 
         // TODO: to be removed
         optional Transparency transparency = 2;
 
-        // TODO
+        // Our Creative Audit process allows for the caller to tag creatives in
+        // our responses as high or low quality and then, at request time,
+        // specify limitations on which of these creatives are allowed to serve.
         optional AdQuality aq = 3;
 
         // An array of string identifiers denoting the advertiser blocklist
-        // relevant for this impression. See the Rubicon Project Blocklist API
-        // for details:
+        // relevant for this impression. See the DV+ Blocklist API for details:
         // https://resources.rubiconproject.com/resource/publisher-resources/knowledge-base/blocklist-sync-api.
         repeated string blocklists = 4;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
@@ -265,26 +283,28 @@ extend com.iabtechlab.openrtb.v2.BidRequest.App {
 
 message SiteExt {
     message Rp {
-        // Rubicon Project site ID.
+        // DV+ site ID.
         optional uint32 site_id = 1;
 
         // TODO: to be removed
         optional Transparency transparency = 2;
 
-        // TODO
+        // Our Creative Audit process allows for the caller to tag creatives in
+        // our responses as high or low quality and then, at request time,
+        // specify limitations on which of these creatives are allowed to serve.
         optional AdQuality aq = 3;
 
         // An array of string identifiers denoting the advertiser blocklist
-        // relevant for this impression. See the Rubicon Project Blocklist API
-        // for details:
+        // relevant for this impression. See the DV+ Blocklist API for details:
         // https://resources.rubiconproject.com/resource/publisher-resources/knowledge-base/blocklist-sync-api.
         repeated string blocklists = 4;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 
-    // TODO
+    // For greater transparency around video inventory, some buyers require this
+    // additional data relating to the content and the video player.
     optional Window window = 2;
 }
 
@@ -295,11 +315,11 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Site {
 
 message PublisherExt {
     message Rp {
-        // Rubicon Project account ID.
+        // DV+ account ID.
         optional int32 account_id = 1;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
@@ -319,9 +339,9 @@ message DeviceExt {
 
         // This is the X-Forwarded-For header that the caller received from the
         // end device. The field is omitted if that header was not received. If
-        // the end device called Rubicon Project directly, we should expect the
-        // calling IP address and X-Forwarded-For header to match the “ip” and
-        // “xff” values in this request.
+        // the end device called Magnite directly, we should expect the calling
+        // IP address and X-Forwarded-For header to match the “ip” and "xff"
+        // values in this request.
         optional string xff = 3;
     }
 
@@ -330,7 +350,7 @@ message DeviceExt {
         optional double impmultiply = 1;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 
     // Indicates whether user IP addresses should be masked before sending to
@@ -355,7 +375,7 @@ message GeoExt {
         optional int32 consent = 1;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
@@ -366,10 +386,17 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Geo {
 
 message UserExt {
     message Dt {
-        // TODO
+        // The user ID, encrypted.
         optional string id = 1;
+
+        // User consent for sharing/recording the user ID, 0 (default)
+        // indicates consent, 1 indicates no consent.
         optional uint64 pref = 2;
-        optional uint32 keyv = 3;
+
+        // The version of the key used to encrypt the user ID (not the key
+        // itself). This allows the receiver to make a quick determination
+        // that the key has been rotated.
+        optional uint32 keyv = 3 [default = 1];
     }
 
     message Rp {
@@ -382,10 +409,10 @@ message UserExt {
         repeated KeyValuePair target = 1;
     }
 
-    // TODO
+    // DEPRECATED: DigiTrust user ID and context.
     optional Dt dt = 1;
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 3;
 
     // LiveRamp IdentityLink (IDL) envelope.
@@ -423,12 +450,12 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Source {
 
 message NativeExt {
     message Rp {
-        // Rubicon Project size ID. Refer to
+        // DV+ size ID. Refer to
         // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         optional uint32 size_id = 1;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
@@ -470,7 +497,7 @@ message BidResponseExt {
         optional InventoryQuality iq = 4;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
@@ -481,12 +508,11 @@ extend com.iabtechlab.openrtb.v2.BidResponse {
 
 message SeatBidExt {
     message Rp {
-        // Rubicon Project ID of the bidder on whose behalf the bid(s) are
-        // made.
+        // DV+ ID of the bidder on whose behalf the bid(s) are made.
         optional string buyer = 1;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
@@ -497,8 +523,7 @@ extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid {
 
 message BidExt {
     message Rp {
-        // Rubicon Project’s advertiser ID for the bid, corresponding to the
-        // "adomain" field.
+        // DV+ advertiser ID for the bid, corresponding to the "adomain" field.
         optional int32 advid = 1;
 
         // The MIME content type with which the "adm" property of the bid is
@@ -509,7 +534,7 @@ message BidExt {
         // For banner and video, the creative is sent as part of adm.
         optional string adtype = 3;
 
-        // Rubicon Project size ID of winning ad size. Refer to
+        // DV+ size ID of winning ad size. Refer to
         // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
         optional uint32 size_id = 4;
 
@@ -543,7 +568,7 @@ message BidExt {
         // Advertiser industry ID.
         repeated int32 aindid = 12;
 
-        // Rubicon Project Beacon URL.
+        // URL to be called to signal the billable event.
         optional string burl = 13;
 
         // DSP provided impression tracking pixels. If the request indicates a
@@ -554,7 +579,7 @@ message BidExt {
         optional BidResponseExt.InventoryQuality iq = 15;
     }
 
-    // Rubicon Project-specific additions.
+    // Additions specific to DV+.
     optional Rp rp = 1;
 }
 
