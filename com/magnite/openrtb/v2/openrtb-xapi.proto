@@ -3,7 +3,7 @@
 //
 
 // XAPI integration fields
-// Use extension IDs in 5010-5020 range for XAPI
+// Use extension IDs in 5000-5199 range for XAPI
 
 syntax = "proto2";
 
@@ -297,11 +297,6 @@ extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid {
 // BidExt
 message BidExt {
     message Rp {
-        message InventoryQuality {
-            optional double cpm = 1;
-            optional double score = 2;
-        }
-
         optional int32 advid = 1;
         optional string mime = 2;
         optional string adtype = 3;
@@ -316,7 +311,6 @@ message BidExt {
         repeated int32 aindid = 12;
         optional string burl = 13;
         repeated string imptrackers = 14;
-        optional InventoryQuality iq = 15;
     }
 
     optional Rp rp = 1;
