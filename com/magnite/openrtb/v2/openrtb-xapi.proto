@@ -30,10 +30,10 @@ message BidRequestExt {
         // debugging purposes.
         optional int32 zone_id = 1;
 
-        // Blocked advertisers domains (max 50).
+        // Blocked advertisers IDs (max 20).
         repeated int32 badvid = 2;
 
-        // TODO
+        // Blocked advertiser industry IDs (max 50).
         repeated int32 baindid = 3;
 
         // TODO: to be removed
@@ -74,11 +74,20 @@ message ImpExt {
     }
 
     message Floor {
-        // TODO
+        // RTB rule identifier.
         optional string id = 1;
+
+        // RTB rule price floor.
         optional double price = 2;
+
+        // TODO: to be removed
         optional bool dpf = 3;
+
+        // RTB rule private marketplace (PMP) tier, where 1 and 2 are reserved
+        // for future use, 3 = Private marketplace, 4 = First Right marketplace.
         optional int32 pmptier = 4;
+
+        // RTB rule private marketplace (PMP) priority level.
         optional int32 pmppriority = 5;
     }
 
@@ -117,7 +126,7 @@ message ImpExt {
         // recorded.
         optional ProxyDemand proxydemand = 8;
 
-        // TODO
+        // Floor data used to synthesize RTB rules.
         repeated Floor floors = 9;
     }
 
@@ -286,7 +295,7 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Site {
 
 message PublisherExt {
     message Rp {
-        // Rubicon Project Account ID.
+        // Rubicon Project account ID.
         optional int32 account_id = 1;
     }
 
@@ -317,17 +326,18 @@ message DeviceExt {
     }
 
     message Dooh {
-        // TODO
+        // Multiplier that applies to all fees, prices, and floors.
         optional double impmultiply = 1;
     }
 
     // Rubicon Project-specific additions.
     optional Rp rp = 1;
 
-    // TODO
+    // Indicates whether user IP addresses should be masked before sending to
+    // DSPs. Note that this feature is only enabled for select accounts.
     optional bool ipmask = 2;
 
-    // TODO
+    // Additional information specific to Digital Out of Home (DOOH).
     optional Dooh dooh = 3;
 }
 
@@ -378,7 +388,7 @@ message UserExt {
     // Rubicon Project-specific additions.
     optional Rp rp = 3;
 
-    // TODO
+    // LiveRamp IdentityLink (IDL) envelope.
     optional string liveramp_idl = 4;
 }
 
@@ -453,7 +463,7 @@ message BidResponseExt {
         // information.
         optional string statusmsg = 2;
 
-        // TODO
+        // Response time, rounded up to the next multiple of 10 milliseconds.
         optional int32 time = 3;
 
         // TODO: to be removed
@@ -519,7 +529,7 @@ message BidExt {
         // CPM-based), 0 = not estimated, 1 = estimated.
         optional int32 estimated = 8;
 
-        // TODO
+        // Bid price net of all fees.
         optional double adjustbid = 9;
 
         // Indicates the private marketplace (PMP) tier of the bid, where 1 and
@@ -527,13 +537,13 @@ message BidExt {
         // Right marketplace. Omitted for open auction.
         optional string pmptier = 10;
 
-        // TODO
+        // RTB ad quality ID.
         optional string aqid = 11;
 
-        // TODO
+        // Advertiser industry ID.
         repeated int32 aindid = 12;
 
-        // TODO
+        // Rubicon Project Beacon URL.
         optional string burl = 13;
 
         // DSP provided impression tracking pixels. If the request indicates a
