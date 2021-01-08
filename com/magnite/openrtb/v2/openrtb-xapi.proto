@@ -24,7 +24,7 @@ message Window {
     optional string url = 1;
 
     // The iframe depth.
-    optional int32  depth = 2;
+    optional int32 depth = 2;
 
     // Minimum width of any iframe traversed between the video player and window.top.
     optional uint32 w = 3;
