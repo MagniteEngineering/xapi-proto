@@ -29,7 +29,6 @@ message BidRequestExt {
         optional int32 zone_id = 1;
         repeated int32 badvid = 2;
         repeated int32 baindid = 3;
-        optional Transparency transparency = 4;
     }
 
     optional Rp rp = 1;
