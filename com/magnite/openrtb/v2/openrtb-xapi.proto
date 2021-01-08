@@ -3,7 +3,7 @@
 //
 
 // XAPI integration fields
-// Use extension IDs in 5000-5199 range for XAPI
+// Use extension IDs in 5100-5299 range for XAPI
 
 syntax = "proto2";
 
@@ -35,7 +35,7 @@ message BidRequestExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest {
-    optional BidRequestExt bid_request = 5001;
+    optional BidRequestExt bid_request = 5101;
 }
 
 // Imp
@@ -76,7 +76,7 @@ message ImpExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
-    optional ImpExt imp = 5002;
+    optional ImpExt imp = 5102;
 }
 
 // Video
@@ -99,7 +99,7 @@ message VideoExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
-    optional VideoExt video = 5003;
+    optional VideoExt video = 5103;
 }
 
 // Banner
@@ -116,7 +116,7 @@ message BannerExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Banner {
-    optional BannerExt banner = 5004;
+    optional BannerExt banner = 5104;
 }
 
 message AdQuality {
@@ -136,7 +136,7 @@ message AppExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.App {
-    optional AppExt app = 5005;
+    optional AppExt app = 5105;
 }
 
 // Site
@@ -152,7 +152,7 @@ message SiteExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Site {
-    optional SiteExt site = 5006;
+    optional SiteExt site = 5106;
 }
 
 // Publisher
@@ -165,7 +165,7 @@ message PublisherExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Publisher {
-    optional PublisherExt publisher = 5007;
+    optional PublisherExt publisher = 5107;
 }
 
 // Device
@@ -186,7 +186,7 @@ message DeviceExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Device {
-    optional DeviceExt device = 5008;
+    optional DeviceExt device = 5108;
 }
 
 // Geo
@@ -199,7 +199,7 @@ message GeoExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Geo {
-    optional GeoExt geo = 5009;
+    optional GeoExt geo = 5109;
 }
 
 // User
@@ -220,7 +220,7 @@ message UserExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.User {
-    optional UserExt user = 5010;
+    optional UserExt user = 5110;
 }
 
 // Regs
@@ -229,7 +229,7 @@ message RegsExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Regs {
-    optional RegsExt regs = 5011;
+    optional RegsExt regs = 5111;
 }
 
 // Source
@@ -238,7 +238,7 @@ message SourceExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Source {
-    optional SourceExt source = 5012;
+    optional SourceExt source = 5112;
 }
 
 // Native
@@ -251,7 +251,7 @@ message NativeExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Native {
-    optional NativeExt native = 5013;
+    optional NativeExt native = 5113;
 }
 
 // NativeRequest
@@ -260,7 +260,7 @@ message NativeRequestExt {
 }
 
 extend com.iabtechlab.openrtb.v2.NativeRequest {
-    optional NativeRequestExt native_request = 5014;
+    optional NativeRequestExt native_request = 5114;
 }
 
 
@@ -278,7 +278,7 @@ message BidResponseExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidResponse {
-    optional BidResponseExt bid_response = 5101;
+    optional BidResponseExt bid_response = 5201;
 }
 
 // SeatBidExt
@@ -291,7 +291,7 @@ message SeatBidExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid {
-    optional SeatBidExt seatbid = 5102;
+    optional SeatBidExt seatbid = 5202;
 }
 
 // BidExt
@@ -317,5 +317,5 @@ message BidExt {
 }
 
 extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid.Bid {
-    optional BidExt bid = 5103;
+    optional BidExt bid = 5203;
 }
