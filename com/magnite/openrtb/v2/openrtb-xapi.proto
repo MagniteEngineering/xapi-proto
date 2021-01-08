@@ -3,7 +3,7 @@
 //
 
 // XAPI integration fields
-// Use extension IDs in 5010-5020 range for XAPI
+// Use extension IDs in 5100-5299 range for XAPI
 
 syntax = "proto2";
 
@@ -44,9 +44,6 @@ message BidRequestExt {
 
         // Blocked advertiser industry IDs (max 50).
         repeated int32 baindid = 3;
-
-        // TODO: to be removed
-        optional Transparency transparency = 4;
     }
 
     // Additions specific to DV+.
@@ -55,7 +52,7 @@ message BidRequestExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest {
     // Extension key for xAPI BidRequest.ext
-    optional BidRequestExt bid_request = 5010;
+    optional BidRequestExt bid_request = 5101;
 }
 
 message ImpExt {
@@ -157,7 +154,7 @@ message ImpExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
     // Extension key for xAPI BidRequest.ext
-    optional ImpExt imp = 5010;
+    optional ImpExt imp = 5102;
 }
 
 message VideoExt {
@@ -199,7 +196,7 @@ message VideoExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
     // Extension key for xAPI Video.ext
-    optional VideoExt video = 5010;
+    optional VideoExt video = 5103;
 }
 
 message BannerExt {
@@ -235,14 +232,7 @@ message BannerExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Banner {
     // Extension key for xAPI Banner.ext
-    optional BannerExt banner = 5010;
-}
-
-message Transparency {
-    // TODO: to be removed
-    optional int32 blind = 1;
-    repeated int32 buyers = 2;
-    repeated int32 blindbuyers = 3;
+    optional BannerExt banner = 5104;
 }
 
 message AdQuality {
@@ -257,18 +247,15 @@ message AppExt {
         // DV+ site ID.
         optional uint32 site_id = 1;
 
-        // TODO: to be removed
-        optional Transparency transparency = 2;
-
         // Our Creative Audit process allows for the caller to tag creatives in
         // our responses as high or low quality and then, at request time,
         // specify limitations on which of these creatives are allowed to serve.
-        optional AdQuality aq = 3;
+        optional AdQuality aq = 2;
 
         // An array of string identifiers denoting the advertiser blocklist
         // relevant for this impression. See the DV+ Blocklist API for details:
         // https://resources.rubiconproject.com/resource/publisher-resources/knowledge-base/blocklist-sync-api.
-        repeated string blocklists = 4;
+        repeated string blocklists = 3;
     }
 
     // Additions specific to DV+.
@@ -277,7 +264,7 @@ message AppExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.App {
     // Extension key for xAPI App.ext
-    optional AppExt app = 5010;
+    optional AppExt app = 5105;
 }
 
 message SiteExt {
@@ -285,18 +272,15 @@ message SiteExt {
         // DV+ site ID.
         optional uint32 site_id = 1;
 
-        // TODO: to be removed
-        optional Transparency transparency = 2;
-
         // Our Creative Audit process allows for the caller to tag creatives in
         // our responses as high or low quality and then, at request time,
         // specify limitations on which of these creatives are allowed to serve.
-        optional AdQuality aq = 3;
+        optional AdQuality aq = 2;
 
         // An array of string identifiers denoting the advertiser blocklist
         // relevant for this impression. See the DV+ Blocklist API for details:
         // https://resources.rubiconproject.com/resource/publisher-resources/knowledge-base/blocklist-sync-api.
-        repeated string blocklists = 4;
+        repeated string blocklists = 3;
     }
 
     // Additions specific to DV+.
@@ -309,7 +293,7 @@ message SiteExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Site {
     // Extension key for xAPI Site.ext
-    optional SiteExt site = 5010;
+    optional SiteExt site = 5106;
 }
 
 message PublisherExt {
@@ -324,7 +308,7 @@ message PublisherExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Publisher {
     // Extension key for xAPI Publisher.ext
-    optional PublisherExt publisher = 5010;
+    optional PublisherExt publisher = 5107;
 }
 
 message DeviceExt {
@@ -362,7 +346,7 @@ message DeviceExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Device {
     // Extension key for xAPI Device.ext
-    optional DeviceExt device = 5010;
+    optional DeviceExt device = 5108;
 }
 
 message GeoExt {
@@ -380,7 +364,7 @@ message GeoExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Geo {
     // Extension key for xAPI Geo.ext
-    optional GeoExt geo = 5010;
+    optional GeoExt geo = 5109;
 }
 
 message UserExt {
@@ -419,7 +403,7 @@ message UserExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.User {
     // Extension key for xAPI User.ext
-    optional UserExt user = 5010;
+    optional UserExt user = 5110;
 }
 
 message RegsExt {
@@ -430,7 +414,7 @@ message RegsExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Regs {
     // Extension key for xAPI Regs.ext
-    optional RegsExt regs = 5010;
+    optional RegsExt regs = 5111;
 }
 
 message SourceExt {
@@ -443,7 +427,7 @@ message SourceExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Source {
     // Extension key for xAPI Source.ext
-    optional SourceExt source = 5010;
+    optional SourceExt source = 5112;
 }
 
 message NativeExt {
@@ -459,7 +443,7 @@ message NativeExt {
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Native {
     // Extension key for xAPI Native.ext
-    optional NativeExt native = 5010;
+    optional NativeExt native = 5113;
 }
 
 message NativeRequestExt {
@@ -469,16 +453,10 @@ message NativeRequestExt {
 
 extend com.iabtechlab.openrtb.v2.NativeRequest {
     // Extension key for xAPI NativeRequest.ext
-    optional NativeRequestExt native_request = 5010;
+    optional NativeRequestExt native_request = 5114;
 }
 
 message BidResponseExt {
-    message InventoryQuality {
-        // TODO: to be removed
-        optional double cpm = 1;
-        optional double score = 2;
-    }
-
     message Rp {
         // Status code set to 0 if the bid array will contain an ad.
         // Status code set to 32 for proxy bid wins.
@@ -490,9 +468,6 @@ message BidResponseExt {
 
         // Response time, rounded up to the next multiple of 10 milliseconds.
         optional int32 time = 3;
-
-        // TODO: to be removed
-        optional InventoryQuality iq = 4;
     }
 
     // Additions specific to DV+.
@@ -501,7 +476,7 @@ message BidResponseExt {
 
 extend com.iabtechlab.openrtb.v2.BidResponse {
     // Extension key for xAPI BidResponse.ext
-    optional BidResponseExt bid_response = 5011;
+    optional BidResponseExt bid_response = 5201;
 }
 
 message SeatBidExt {
@@ -516,7 +491,7 @@ message SeatBidExt {
 
 extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid {
     // Extension key for xAPI SeatBid.ext
-    optional SeatBidExt seatbid = 5011;
+    optional SeatBidExt seatbid = 5202;
 }
 
 message BidExt {
@@ -572,9 +547,6 @@ message BidExt {
         // DSP provided impression tracking pixels. If the request indicates a
         // secure environment via the imp.secure flag, all URLs must be secure.
         repeated string imptrackers = 14;
-
-        // TODO: to be removed
-        optional BidResponseExt.InventoryQuality iq = 15;
     }
 
     // Additions specific to DV+.
@@ -583,5 +555,5 @@ message BidExt {
 
 extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid.Bid {
     // Extension key for xAPI Bid.ext
-    optional BidExt bid = 5011;
+    optional BidExt bid = 5203;
 }
