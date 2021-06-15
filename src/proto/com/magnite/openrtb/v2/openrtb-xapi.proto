@@ -150,6 +150,12 @@ message ImpExt {
     // Supported viewability vendors. For list of supported vendors, visit:
     // https://resources.rubiconproject.com/resource/publisher-resources/xapi-specifications/#4.9.
     repeated string viewabilityvendors = 3;
+
+    // Global Placement ID. The unique identifier of the placement that is sent 
+    // to all participants in buying impressions for this placement. In general, 
+    // this field will be populated with one of the DFP Ad Unit Code, Prebid Ad Slot,
+    // or value provided by the publisher or ad server.
+    optional string gpid = 4;
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
