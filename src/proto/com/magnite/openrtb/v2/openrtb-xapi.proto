@@ -541,6 +541,9 @@ message BidExt {
         // Right marketplace. Omitted for open auction.
         optional string pmptier = 10;
 
+        //OD15838 Temporary field to allow for transition period
+        optional int32 pmptier_int = 15;
+
         // RTB ad quality ID.
         optional string aqid = 11;
 
