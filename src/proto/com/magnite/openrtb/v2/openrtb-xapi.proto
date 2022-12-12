@@ -554,7 +554,7 @@ message BidExt {
         // secure environment via the imp.secure flag, all URLs must be secure.
         repeated string imptrackers = 14;
 
-        //Temporary field of pmptier to allow for transition period
+        // Temporary field of pmptier to allow for transition period
         optional int32 pmptier_int = 15;
     }
 
