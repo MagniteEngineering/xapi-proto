@@ -539,7 +539,7 @@ message BidExt {
         // Indicates the private marketplace (PMP) tier of the bid, where 1 and
         // 2 are reserved for future use, 3 = Private marketplace, 4 = First
         // Right marketplace. Omitted for open auction.
-        optional string pmptier = 10;
+        optional string deprecated_pmptier = 10;
 
         // RTB ad quality ID.
         optional string aqid = 11;
@@ -555,7 +555,7 @@ message BidExt {
         repeated string imptrackers = 14;
 
         // Temporary field of pmptier to allow for transition period
-        optional int32 pmptier_int = 15;
+        optional int32 pmptier = 15;
     }
 
     // Additions specific to DV+.
