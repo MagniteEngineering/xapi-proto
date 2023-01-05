@@ -536,9 +536,7 @@ message BidExt {
         // Bid price net of all fees.
         optional double adjustbid = 9;
 
-        // Indicates the private marketplace (PMP) tier of the bid, where 1 and
-        // 2 are reserved for future use, 3 = Private marketplace, 4 = First
-        // Right marketplace. Omitted for open auction.
+        // Temporary field to allow for transition period moving from string to int
         optional string deprecated_pmptier = 10;
 
         // RTB ad quality ID.
@@ -554,7 +552,10 @@ message BidExt {
         // secure environment via the imp.secure flag, all URLs must be secure.
         repeated string imptrackers = 14;
 
-        // Temporary field of pmptier to allow for transition period
+        // New field for pmptier to allow for type int
+        // Indicates the private marketplace (PMP) tier of the bid, where 1 and
+        // 2 are reserved for future use, 3 = Private marketplace, 4 = First
+        // Right marketplace. Omitted for open auction.
         optional int32 pmptier = 15;
     }
 
