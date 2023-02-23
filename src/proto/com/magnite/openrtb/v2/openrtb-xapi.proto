@@ -151,8 +151,8 @@ message ImpExt {
     // https://resources.rubiconproject.com/resource/publisher-resources/xapi-specifications/#4.9.
     repeated string viewabilityvendors = 3;
 
-    // Global Placement ID. The unique identifier of the placement that is sent 
-    // to all participants in buying impressions for this placement. In general, 
+    // Global Placement ID. The unique identifier of the placement that is sent
+    // to all participants in buying impressions for this placement. In general,
     // this field will be populated with one of the DFP Ad Unit Code, Prebid Ad Slot,
     // or value provided by the publisher or ad server.
     optional string gpid = 4;
@@ -438,9 +438,10 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Source {
 
 message NativeExt {
     message Rp {
+        // DEPRECATED: NO LONGER SUPPORTED
         // DV+ size ID. Refer to
         // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
-        optional uint32 size_id = 1;
+        optional uint32 deprecated_size_id = 1;
     }
 
     // Additions specific to DV+.
