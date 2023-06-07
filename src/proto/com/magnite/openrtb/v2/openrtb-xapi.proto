@@ -141,8 +141,8 @@ message ImpExt {
 
         // Global Placement ID. The unique identifier of the placement that is sent 
         // to all participants in buying impressions for this placement. In general, 
-        // this field will be populated with one of the DFP Ad Unit Code, Prebid Ad Slot,
-        // or value provided by the publisher or ad server.
+        // this field should be populated with one of the DFP Ad Unit Code, Prebid Ad Slot,
+        // or some value provided by the publisher or ad server.
         optional string gpid = 10;
     }
 
@@ -159,8 +159,8 @@ message ImpExt {
 
     // Global Placement ID. The unique identifier of the placement that is sent 
     // to all participants in buying impressions for this placement. In general, 
-    // this field will be populated with one of the DFP Ad Unit Code, Prebid Ad Slot,
-    // or value provided by the publisher or ad server.
+    // this field should be populated with one of the DFP Ad Unit Code, Prebid Ad Slot,
+    // or some value provided by the publisher or ad server.
     optional string gpid = 4;
 }
 
