@@ -139,7 +139,6 @@ message ImpExt {
         // Floor data used to synthesize RTB rules.
         repeated Floor floors = 9;
 
-        // OD-17689 GPID needs to be handled by ImpExt_rp
         // Global Placement ID. The unique identifier of the placement that is sent 
         // to all participants in buying impressions for this placement. In general, 
         // this field will be populated with one of the DFP Ad Unit Code, Prebid Ad Slot,
