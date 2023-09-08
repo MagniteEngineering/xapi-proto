@@ -204,6 +204,13 @@ message VideoExt {
     // Placement type for the impression. Refer to IAB OpenRTB
     // VideoPlacementType enum.
     optional int32 placement = 6;
+
+    // Indicates whether the user receives a reward for viewing the ad.
+    // Typically video ad implementations allow users to read an additional news
+    // article for free, receive an extra life in a game, or get a sponsored
+    // ad-free music session. The reward is typically distributed after the
+    // video ad is completed.
+    optional string videotype = 7;
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
@@ -411,6 +418,46 @@ message UserExt {
 
     // LiveRamp IdentityLink (IDL) envelope.
     optional string liveramp_idl = 4;
+
+    // When GDPR regulations are in effect this attribute contains the
+    // Transparency and Consent Framework’s Consent String data structure.
+    optional string consent = 5;
+
+    // Details for support of a standard protocol for multiple third
+    // party identity providers.
+    // Not supported by Google. For Secure Signals, see extension
+    // BidRequest.user.ext.eids.
+    repeated EID eids = 6;
+
+    // Extended identifiers support in the OpenRTB specification allows buyers
+    // to use audience data in real-time bidding. This object can contain one or
+    // more UIDs from a single source or a technology provider. The exchange
+    // should ensure that business agreements allow for the sending of this data
+    message EID {
+        // Source or technology provider responsible for the set of included IDs.
+        // Expressed as a top-level domain.
+        // Not supported by Google.
+        optional string source = 1;
+  
+        // This object contains a single user identifier provided as part of
+        // extended identifiers. The exchange should ensure that business
+        // agreements allow for the sending of this data.
+        message UID {
+            // The identifier for the user.
+            // Not supported by Google.
+            optional string id = 1;
+  
+            // Type of user agent the ID is from.
+            // Not supported by Google.
+            optional AgentType atype = 2;
+            extensions 100 to 9999;
+        }
+  
+        // Array of extended ID UID objects from the given source.
+        // Not supported by Google.
+        repeated UID uids = 2;
+        extensions 100 to 9999;
+    }
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.User {
@@ -422,6 +469,12 @@ message RegsExt {
     // Flag indicating whether or not this request falls under California Cal
     // Bus & Prof Code s22580 regulation.
     optional bool s22580 = 1;
+
+    // Flag that indicates whether or not the request is subject to GDPR regulations.
+    optional bool gdpr = 2;
+
+    // Communicates signals regarding consumer privacy under US privacy regulation.
+    optional string us_privacy = 3;
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Regs {
@@ -435,6 +488,90 @@ message SourceExt {
     // from the server will convey device context in new “X-Device” HTTP
     // headers per the VAST 4.1 specification.
     optional bool ssreq = 1;
+
+    // This object represents both the links in the supply chain as
+    // well as an indicator whether or not the supply chain is complete.
+    optional SupplyChain schain = 2;
+
+    // This object is composed of a set of nodes where each node represents a
+    // specific entity that participates in the transacting of inventory.
+    // The entire chain of nodes from beginning to end represents all entities
+    // who are involved in the direct flow of payment for inventory. Detailed
+    // implementation examples can be found here:
+    // https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md
+    message SupplyChain {
+        // Indicates whether the chain contains all nodes involved in the
+        // transaction leading back to the owner of the site, app or other medium
+        // of the inventory.
+        // REQUIRED by the OpenRTB specification.
+        optional bool complete = 1;
+  
+        // The identity of an entity participating in the supply chain.
+        message SupplyChainNode {
+            // The canonical domain name of the SSP, Exchange, Header Wrapper, etc
+            // system that bidders connect to. This may be the operational domain of
+            // the system, if that is different than the parent corporate domain, to
+            // facilitate WHOIS and reverse IP lookups to establish clear ownership
+            // of the delegate system. This should be the same value as used to
+            // identify sellers in an ads.txt file if one exists.
+            // REQUIRED by the OpenRTB specification.
+            optional string asi = 1;
+  
+            // The identifier associated with the seller or reseller account
+            // within the advertising system. This must contain the same value
+            // used in transactions (OpenRTB bid requests) in the field
+            // specified by the SSP/exchange. Typically, in OpenRTB, this is
+            // publisher.id. For OpenDirect it is typically the publisher's
+            // organization ID. Should be limited to 64 characters in length.
+            // REQUIRED by the OpenRTB specification.
+            optional string sid = 2;
+  
+            // The OpenRTB RequestId of the request as issued by this seller.
+            // Not supported by Google.
+            optional string rid = 3;
+  
+            // The name of the company (the legal entity) that has paid for
+            // inventory transacted under the given seller_ID. This value is
+            // optional and should NOT be included if it exists in the
+            // advertising system’s sellers.json file.
+            // Not supported by Google.
+            optional string name = 4;
+  
+            // The business domain name of the entity represented by this
+            // node. This value is optional and should NOT be included if it
+            // exists in the advertising system’s sellers.json file.
+            // Not supported by Google.
+            optional string domain = 5;
+  
+            // Indicates whether this node will be involved in the flow of payment
+            // for the inventory. When set to true, the advertising system in the
+            // asi field pays the seller in the sid field, who is responsible for
+            // paying the previous node in the chain. When set to false, this node
+            // is not involved in the flow of payment for the inventory.
+            // For version 1.0 of SupplyChain, this property should always be true.
+            // Implementers should ensure that they propagate this field onwards
+            // when constructing SupplyChain objects in bid requests sent to a
+            // downstream advertising system.
+            optional bool hp = 6;
+            extensions 100 to 9999;
+        }
+  
+        // Array of SupplyChainNode objects in the order of the chain.
+        // In a complete supply chain, the first node represents the initial
+        // advertising system and seller ID involved in the transaction, that is,
+        // the owner of the site, app, or other medium. In an incomplete
+        // supply chain, it represents the first known node. The last node
+        // represents the entity sending this bid request.
+        // REQUIRED by the OpenRTB specification.
+        repeated SupplyChainNode nodes = 2;
+  
+        // Version of the supply chain specification in use, in the format
+        // of "major.minor". For example, for version 1.0 of the spec,
+        // use the string "1.0".
+        // REQUIRED by the OpenRTB specification.
+        optional string ver = 3;
+        extensions 100 to 9999;
+    }
 }
 
 extend com.iabtechlab.openrtb.v2.BidRequest.Source {
