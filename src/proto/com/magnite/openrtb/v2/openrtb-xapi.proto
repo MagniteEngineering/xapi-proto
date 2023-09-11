@@ -86,10 +86,10 @@ message ImpExt {
         // RTB rule price floor.
         optional double price = 2;
 
-        // DEPRECATED: NO LONGER SUPPORTED
+        // DEPRECATED: no longer supported
         // Flag to indicate whether or not Dynamic Price Floors should be active
         // for this floor.
-        optional bool dpf = 3;
+        optional bool dpf = 3 [deprecated = true];
 
         // RTB rule private marketplace (PMP) tier, where 1 and 2 are reserved
         // for future use, 3 = Private marketplace, 4 = First Right marketplace.
@@ -196,10 +196,10 @@ message VideoExt {
     optional Ad ad = 3;
 
     // DEPRECATED: Use “skip” field from the video object.
-    optional bool skip = 4;
+    optional bool skip = 4 [deprecated = true];
 
     // DEPRECATED: Replaced by “skipafter” in the video object.
-    optional int32 skipdelay = 5;
+    optional int32 skipdelay = 5 [deprecated = true];
 
     // Placement type for the impression. Refer to IAB OpenRTB
     // VideoPlacementType enum.
@@ -228,10 +228,10 @@ message BannerExt {
         // fragment.
         optional string mime = 3;
 
-        // DEPRECATED: NO LONGER SUPPORTED
+        // DEPRECATED: no longer supported
         // Flag to indicate usage of nurl (Magnite billable pixel) in
         // bid response.
-        optional bool usenurl = 4;
+        optional bool usenurl = 4 [deprecated = true];
 
         // Flag to indicate usage of imptrackers (DSP impression tracking
         // pixels) in bid response.
@@ -404,7 +404,7 @@ message UserExt {
     }
 
     // DEPRECATED: DigiTrust user ID and context.
-    optional Dt dt = 1;
+    optional Dt dt = 1 [deprecated = true];
 
     // Additions specific to DV+.
     optional Rp rp = 3;
@@ -444,10 +444,10 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Source {
 
 message NativeExt {
     message Rp {
-        // DEPRECATED: NO LONGER SUPPORTED
+        // DEPRECATED: no longer supported
         // DV+ size ID. Refer to
         // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
-        optional uint32 deprecated_size_id = 1;
+        optional uint32 size_id = 1  [deprecated = true];
     }
 
     // Additions specific to DV+.
@@ -543,8 +543,8 @@ message BidExt {
         // Bid price net of all fees.
         optional double adjustbid = 9;
 
-        // Temporary field to allow for transition period moving from string to int
-        optional string deprecated_pmptier = 10;
+        // DEPRECATED: Temporary field to allow for transition period moving from string to int
+        optional string deprecated_pmptier = 10  [deprecated = true];
 
         // RTB ad quality ID.
         optional string aqid = 11;
