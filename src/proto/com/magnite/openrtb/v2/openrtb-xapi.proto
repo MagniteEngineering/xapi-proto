@@ -447,7 +447,7 @@ message NativeExt {
         // DEPRECATED: no longer supported
         // DV+ size ID. Refer to
         // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
-        optional uint32 size_id = 1  [deprecated = true];
+        optional uint32 size_id = 1 [deprecated = true];
     }
 
     // Additions specific to DV+.
@@ -544,7 +544,7 @@ message BidExt {
         optional double adjustbid = 9;
 
         // DEPRECATED: Temporary field to allow for transition period moving from string to int
-        optional string deprecated_pmptier = 10  [deprecated = true];
+        optional string deprecated_pmptier = 10 [deprecated = true];
 
         // RTB ad quality ID.
         optional string aqid = 11;
