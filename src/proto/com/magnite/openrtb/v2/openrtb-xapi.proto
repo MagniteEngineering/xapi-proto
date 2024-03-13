@@ -469,6 +469,22 @@ extend com.iabtechlab.openrtb.v2.NativeRequest {
     optional NativeRequestExt native_request = 5114;
 }
 
+message AudioExt {
+    message Rp {
+        // DV+ size ID. Refer to
+        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
+        optional uint32 size_id = 1;
+    }
+
+    // Additions specific to DV+.
+    optional Rp rp = 1;
+}
+
+extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Audio {
+    // Extension key for xAPI Audio.ext
+    optional AudioExt audio = 5115;
+}
+
 message BidResponseExt {
     message Rp {
         // Status code set to 0 if the bid array will contain an ad.
