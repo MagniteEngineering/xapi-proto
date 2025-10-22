@@ -581,7 +581,7 @@ message BidExt {
         // Right marketplace. Omitted for open auction.
         optional int32 pmptier = 15;
 
-	// Field indicating MEM response 
+        // Field indicating MEM response 
         // b - 
         // v - video
         // n - native
