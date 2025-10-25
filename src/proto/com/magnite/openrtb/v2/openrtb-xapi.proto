@@ -582,7 +582,7 @@ message BidExt {
         optional int32 pmptier = 15;
 
         // Field indicating MEM response 
-        // b - 
+        // b - banner
         // v - video
         // n - native
         // a - audio
