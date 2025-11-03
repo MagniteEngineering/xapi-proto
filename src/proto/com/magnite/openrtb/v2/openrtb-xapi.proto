@@ -575,11 +575,18 @@ message BidExt {
         // secure environment via the imp.secure flag, all URLs must be secure.
         repeated string imptrackers = 14;
 
-        // New field for pmptier to allow for type int
+        // Field for pmptier to allow for type int
         // Indicates the private marketplace (PMP) tier of the bid, where 1 and
         // 2 are reserved for future use, 3 = Private marketplace, 4 = First
         // Right marketplace. Omitted for open auction.
         optional int32 pmptier = 15;
+
+        // Field indicating MEM response 
+        // b - banner
+        // v - video
+        // n - native
+        // a - audio
+        optional string response_format = 16;
     }
 
     // Additions specific to DV+.
