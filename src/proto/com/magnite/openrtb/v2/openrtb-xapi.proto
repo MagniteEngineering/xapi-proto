@@ -581,12 +581,18 @@ message BidExt {
         // Right marketplace. Omitted for open auction.
         optional int32 pmptier = 15;
 
+        //
+        // response type if MEM
+        //
+        enum ResponseFormat_E {
+            UNKNOWN       = 0;
+            BANNER        = 1;
+            VIDEO         = 2;
+            NATIVE        = 3; 
+            AUDIO         = 4;
+}
         // Field indicating MEM response 
-        // 1 - banner
-        // 2 - video
-        // 3 - native
-        // 4 - audio
-        optional uint32 response_format = 16;
+        optional ResponseFormat_E response_format = 16;
     }
 
     // Additions specific to DV+.
