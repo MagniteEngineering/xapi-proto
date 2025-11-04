@@ -581,9 +581,7 @@ message BidExt {
         // Right marketplace. Omitted for open auction.
         optional int32 pmptier = 15;
 
-        //
-        // response format if MEM
-        //
+        // Response format if MEM
         enum ResponseFormat_E {
             UNKNOWN       = 0;
             BANNER        = 1;
