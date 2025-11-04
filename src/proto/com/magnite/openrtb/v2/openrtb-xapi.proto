@@ -582,7 +582,7 @@ message BidExt {
         optional int32 pmptier = 15;
 
         //
-        // response type if MEM
+        // response format if MEM
         //
         enum ResponseFormat_E {
             UNKNOWN       = 0;
@@ -590,7 +590,7 @@ message BidExt {
             VIDEO         = 2;
             NATIVE        = 3; 
             AUDIO         = 4;
-}
+        }
         // Field indicating MEM response 
         optional ResponseFormat_E response_format = 16;
     }
