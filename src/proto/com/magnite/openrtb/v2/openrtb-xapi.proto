@@ -582,11 +582,11 @@ message BidExt {
         optional int32 pmptier = 15;
 
         // Field indicating MEM response 
-        // b - banner
-        // v - video
-        // n - native
-        // a - audio
-        optional string response_format = 16;
+        // 1 - banner
+        // 2 - video
+        // 3 - native
+        // 4 - audio
+        optional uint32 response_format = 16;
     }
 
     // Additions specific to DV+.
