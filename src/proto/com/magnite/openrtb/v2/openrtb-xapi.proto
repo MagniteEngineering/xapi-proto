@@ -586,7 +586,7 @@ message BidExt {
             UNKNOWN       = 0;
             BANNER        = 1;
             VIDEO         = 2;
-            NATIVE        = 3; 
+            NATIVE        = 3;
             AUDIO         = 4;
         }
         // Field indicating MEM response (value mapped as above enum)
@@ -600,4 +600,17 @@ message BidExt {
 extend com.iabtechlab.openrtb.v2.BidResponse.SeatBid.Bid {
     // Extension key for xAPI Bid.ext
     optional BidExt bid = 5203;
+}
+
+message EventTrackerExt {
+    // Open Measurement verification parameters.
+    optional string verification_parameters = 1;
+
+    // Open Measurement vendor key (camelCase per IAB spec).
+    optional string vendorKey = 2;
+}
+
+extend com.iabtechlab.openrtb.v2.NativeResponse.EventTracker {
+    // Extension key for xAPI EventTracker.ext
+    optional EventTrackerExt eventtrracker = 5204;
 }
