@@ -612,5 +612,5 @@ message EventTrackerExt {
 
 extend com.iabtechlab.openrtb.v2.NativeResponse.EventTracker {
     // Extension key for xAPI EventTracker.ext
-    optional EventTrackerExt eventtrracker = 5204;
+    optional EventTrackerExt eventtracker = 5204;
 }
