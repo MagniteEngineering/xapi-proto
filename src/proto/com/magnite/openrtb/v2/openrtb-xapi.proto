@@ -308,25 +308,6 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Site {
     optional SiteExt site = 5106;
 }
 
-message DoohExt {
-    message Rp {
-        // DV+ site ID.
-        optional uint32 site_id = 1;
-
-        // An array of string identifiers denoting the advertiser blocklist
-        // relevant for this impression. See the DV+ Blocklist API for details:
-        // https://help.magnite.com/help/blocklist-sync-api.
-        repeated string blocklists = 2;
-    }
-
-    // Additions specific to DV+.
-    optional Rp rp = 1;
-}
-
-extend com.iabtechlab.openrtb.v2.BidRequest.Dooh {
-    // Extension key for xAPI Dooh.ext
-    optional DoohExt dooh = 5116;
-}
 message PublisherExt {
     message Rp {
         // DV+ account ID.
