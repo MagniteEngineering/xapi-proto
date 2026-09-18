@@ -154,7 +154,7 @@ message ImpExt {
     optional Window window = 2;
 
     // Supported viewability vendors. For list of supported vendors, visit:
-    // https://resources.rubiconproject.com/resource/publisher-resources/xapi-specifications/#4.9.
+    // https://help.magnite.com/help/xapi-specifications-xapi-specifications.
     repeated string viewabilityvendors = 3;
 
     // Global Placement ID. The unique identifier of the placement that is sent
@@ -172,7 +172,7 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Imp {
 message VideoExt {
     message Rp {
         // DV+ size ID. Refer to
-        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
+        // https://help.magnite.com/help/supported-ad-formats.
         optional uint32 size_id = 1;
     }
 
@@ -214,11 +214,11 @@ extend com.iabtechlab.openrtb.v2.BidRequest.Imp.Video {
 message BannerExt {
     message Rp {
         // DV+ size ID. Refer to
-        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
+        // https://help.magnite.com/help/supported-ad-formats.
         optional uint32 size_id = 1;
 
         // Alternate size IDs. Refer to
-        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
+        // https://help.magnite.com/help/supported-ad-formats.
         repeated uint32 alt_size_ids = 2;
 
         // Specify the content type of ad markup (“adm” property) in the
@@ -266,7 +266,7 @@ message AppExt {
 
         // An array of string identifiers denoting the advertiser blocklist
         // relevant for this impression. See the DV+ Blocklist API for details:
-        // https://resources.rubiconproject.com/resource/publisher-resources/knowledge-base/blocklist-sync-api.
+        // https://help.magnite.com/help/blocklist-sync-api.
         repeated string blocklists = 3;
     }
 
@@ -291,7 +291,7 @@ message SiteExt {
 
         // An array of string identifiers denoting the advertiser blocklist
         // relevant for this impression. See the DV+ Blocklist API for details:
-        // https://resources.rubiconproject.com/resource/publisher-resources/knowledge-base/blocklist-sync-api.
+        // https://help.magnite.com/help/blocklist-sync-api.
         repeated string blocklists = 3;
     }
 
@@ -446,7 +446,7 @@ message NativeExt {
     message Rp {
         // DEPRECATED: no longer supported
         // DV+ size ID. Refer to
-        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
+        // https://help.magnite.com/help/supported-ad-formats.
         optional uint32 size_id = 1 [deprecated = true];
     }
 
@@ -472,7 +472,7 @@ extend com.iabtechlab.openrtb.v2.NativeRequest {
 message AudioExt {
     message Rp {
         // DV+ size ID. Refer to
-        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
+        // https://help.magnite.com/help/supported-ad-formats.
         optional uint32 size_id = 1;
     }
 
@@ -537,7 +537,7 @@ message BidExt {
         optional string adtype = 3;
 
         // DV+ size ID of winning ad size. Refer to
-        // https://resources.rubiconproject.com/resource/publisher-resources-2/supported-ad-formats.
+        // https://help.magnite.com/help/supported-ad-formats.
         optional uint32 size_id = 4;
 
         // Custom key/values used for targeting line items in a publisher ad
@@ -549,7 +549,7 @@ message BidExt {
         optional uint32 creativeapi = 6;
 
         // Supported viewability vendors. For list of supported vendors, visit:
-        // https://resources.rubiconproject.com/resource/publisher-resources/xapi-specifications/#4.9.
+        // https://help.magnite.com/help/xapi-specifications-xapi-specifications.
         repeated string viewabilityvendors = 7;
 
         // Indicates if the price is estimated (e.g., where pricing is not
